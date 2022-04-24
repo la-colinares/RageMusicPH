@@ -46,9 +46,9 @@ fun PlayPauseButton(
         FloatingActionButton(
             onClick = {
                 if (isPlay) {
-                    onPlay.invoke()
-                } else {
                     onPause.invoke()
+                } else {
+                    onPlay.invoke()
                 }
             },
             backgroundColor = Red,
