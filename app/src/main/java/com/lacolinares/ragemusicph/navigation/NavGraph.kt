@@ -2,11 +2,9 @@ package com.lacolinares.ragemusicph.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.*
-import androidx.compose.ui.platform.LocalContext
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.MediaMetadata
 import com.google.android.exoplayer2.Player
 import com.lacolinares.ragemusicph.extensions.customComposable
@@ -16,14 +14,8 @@ import com.lacolinares.ragemusicph.presentation.ui.screens.main.MainScreen
 
 @ExperimentalAnimationApi
 @Composable
-fun NavGraph() {
+fun NavGraph(exoPlayer: ExoPlayer) {
     val navController = rememberAnimatedNavController()
-    val context = LocalContext.current
-
-    val url = "https://node-15.zeno.fm/yu9dryfs7x8uv.mp3?rj-ttl=5&rj-tok=AAABgFn8jHMAJlhQjlgTTNm8Iw"
-    val exoPlayer = ExoPlayer.Builder(context).build()
-    val mediaItem = MediaItem.fromUri(url)
-    exoPlayer.setMediaItem(mediaItem)
 
     AnimatedNavHost(
         navController = navController,
