@@ -25,7 +25,7 @@ fun MainScreen(
     isAudioPlaying: Boolean,
     audioTitle: String,
     audioArtist: String,
-    viewModel: MainScreenViewModel
+    viewModel: MainScreenViewModel,
 ) {
     val context = LocalContext.current
     val foregroundServiceStopped = viewModel.foregroundServiceStopped.collectAsState()
@@ -50,10 +50,10 @@ fun MainScreen(
                 BottomContent(
                     isPlay = isAudioPlaying,
                     onPlay = {
-                        if (foregroundServiceStopped.value){
+                        if (foregroundServiceStopped.value) {
                             viewModel.setRebindService(true)
                             viewModel.setForegroundServiceStopped(false)
-                        }else{
+                        } else {
                             exoPlayer.play()
                         }
                     },

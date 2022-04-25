@@ -65,6 +65,7 @@ class MainActivity : ComponentActivity() {
             val mediaItem = MediaItem.fromUri(url)
             exoPlayer.setMediaItem(mediaItem)
             isBound = true
+            viewModel.setRebindService(false)
 
             binder.playerService.onStopListener = PlayerService.OnStopForeground {
                 doUnbindService()

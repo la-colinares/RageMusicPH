@@ -30,7 +30,8 @@ fun NavGraph(exoPlayer: ExoPlayer, viewModel: MainScreenViewModel) {
             val audioTitle: MutableState<String> = remember { mutableStateOf("") }
             val audioArtist: MutableState<String> = remember { mutableStateOf("") }
 
-            LaunchedEffect(viewModel.rebindService.value) {
+            val rebindService = viewModel.rebindService.collectAsState()
+            LaunchedEffect(rebindService.value) {
                 exoPlayer.prepare()
                 exoPlayer.play()
                 exoPlayer.addListener(object : Player.Listener {
