@@ -21,16 +21,18 @@ import com.lacolinares.ragemusicph.custom.Space
 @Composable
 fun MidContent(
     playEqualizer: Boolean = false,
-    musicTitle: String = "N/A",
-    musicArtist: String = "N/A",
+    musicTitle: String,
+    musicArtist: String,
     onShareApp: () -> Unit = {}
 ){
     Equalizer(isPlay = playEqualizer)
     Space(24)
     MusicInfo(title = musicTitle, artist = musicArtist)
     Space(24)
-    ShareApp() {
-        onShareApp.invoke()
+    if(musicTitle.isNotEmpty()){
+        ShareApp() {
+            onShareApp.invoke()
+        }
     }
     Space(12)
 }

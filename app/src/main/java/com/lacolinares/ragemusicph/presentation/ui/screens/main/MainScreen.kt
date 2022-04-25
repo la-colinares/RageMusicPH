@@ -1,11 +1,16 @@
 package com.lacolinares.ragemusicph.presentation.ui.screens.main
 
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.google.android.exoplayer2.ExoPlayer
 import com.lacolinares.ragemusicph.custom.Space
@@ -18,11 +23,12 @@ import com.lacolinares.ragemusicph.presentation.ui.theme.Red
 
 @Composable
 fun MainScreen(
-    exoPlayer : ExoPlayer,
+    exoPlayer: ExoPlayer,
     isAudioPlaying: Boolean,
     audioTitle: String,
     audioArtist: String,
 ) {
+    val context = LocalContext.current
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -37,10 +43,10 @@ fun MainScreen(
                 musicTitle = audioTitle,
                 musicArtist = audioArtist,
                 onShareApp = {
-                    //TODO: share app url link
+                    context.openPlayStoreApp()
                 }
             )
-            if (audioTitle.isNotEmpty()){
+            if (audioTitle.isNotEmpty()) {
                 BottomContent(
                     isPlay = isAudioPlaying,
                     onPlay = {
@@ -50,14 +56,31 @@ fun MainScreen(
                         exoPlayer.pause()
                     }
                 )
-            }else{
+            } else {
                 Loader()
             }
         }
     }
 }
 
-@Composable fun Loader(){
+fun Context.openPlayStoreApp() {
+    val pkgName = this.packageName
+    if (!pkgName.isNullOrEmpty()) {
+        try {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$pkgName")))
+        } catch (e: ActivityNotFoundException) {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://play.google.com/store/apps/details?id=$pkgName")
+                )
+            )
+        }
+    }
+}
+
+@Composable
+fun Loader() {
     Space(height = 24)
     Box(
         modifier = Modifier.fillMaxWidth(),
