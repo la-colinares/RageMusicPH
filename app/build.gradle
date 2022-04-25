@@ -3,6 +3,10 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+ext.versionMajor = 1 //Change when making major feature/functions
+ext.versionMinor = 0 //Change when making UI updates
+ext.versionPatch = 0 //Change when making bug fixes
+
 android {
     compileSdk 31
 
@@ -10,8 +14,8 @@ android {
         applicationId "com.lacolinares.ragemusicph"
         minSdk 22
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        versionCode generateVersionCode()
+        versionName generateVersionName()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -21,7 +25,9 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -43,6 +49,29 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.each { output ->
+                def appName = "RMPH"
+                def date = new Date()
+                def formattedDate = date.format("yyyy-MM-dd-kk.mm.ss")
+                if(variant.buildType.name.contains('debug')){
+                    output.outputFileName = appName + "-${variant.versionName}-${formattedDate}.apk"
+                }else{
+                    output.outputFileName = appName + "-${variant.versionName}.apk"
+                }
+            }
+    }
+}
+
+private Integer generateVersionCode() {
+    return versionMajor * 10000 + ext.versionMinor * 100 + ext.versionPatch
+}
+
+private String generateVersionName() {
+    String versionName = "${ext.versionMajor}.${ext.versionMinor}.${ext.versionPatch}"
+    return versionName;
 }
 
 dependencies {
