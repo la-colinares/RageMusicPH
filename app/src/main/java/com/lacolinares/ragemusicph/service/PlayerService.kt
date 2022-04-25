@@ -5,9 +5,11 @@ import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Binder
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaMetadata
@@ -56,7 +58,7 @@ class PlayerService : Service() {
         notificationManager = PlayerNotificationManager.Builder(this, notificationId, channelId)
             .setNotificationListener(notificationListener)
             .setMediaDescriptionAdapter(descriptionAdapter())
-            .setSmallIconResourceId(R.drawable.ic_rage_music_ph_notif)
+            .setSmallIconResourceId(R.drawable.ic_baseline_music_note_24)
             .setChannelDescriptionResourceId(R.string.app_name)
             .setPauseActionIconResourceId(R.drawable.ic_baseline_pause_24)
             .setPlayActionIconResourceId(R.drawable.ic_baseline_play_arrow_24)
@@ -97,12 +99,15 @@ class PlayerService : Service() {
     }
 
     private fun descriptionAdapter():  PlayerNotificationManager.MediaDescriptionAdapter {
-        val title = MutableStateFlow("Rage Music PH Pinoy Rap Hits")
+        val title = MutableStateFlow("Rage Music PH")
+        val artist = MutableStateFlow("Pinoy Rap Hits")
         player.addListener(object : Player.Listener {
             override fun onMediaMetadataChanged(mediaMetadata: MediaMetadata) {
                 super.onMediaMetadataChanged(mediaMetadata)
                 if (mediaMetadata.title != null) {
-                    title.value = mediaMetadata.title.toString()
+                    val data = mediaMetadata.title.toString().split("-")
+                    title.value = data.last().trim()
+                    artist.value = data.first().trim()
                 }
             }
         })
@@ -112,8 +117,13 @@ class PlayerService : Service() {
                 return title.value
             }
             override fun createCurrentContentIntent(player: Player): PendingIntent? = null
-            override fun getCurrentContentText(player: Player): CharSequence? = null
-            override fun getCurrentLargeIcon(player: Player, callback: PlayerNotificationManager.BitmapCallback): Bitmap? = null
+            override fun getCurrentContentText(player: Player): CharSequence {
+                return artist.value
+            }
+            override fun getCurrentLargeIcon(player: Player, callback: PlayerNotificationManager.BitmapCallback): Bitmap? {
+                val bitmapDrawable: BitmapDrawable = ContextCompat.getDrawable(applicationContext, R.drawable.ic_rage_music_large) as BitmapDrawable
+                return bitmapDrawable.bitmap
+            }
         }
     }
 }
