@@ -10,11 +10,12 @@ import com.google.android.exoplayer2.Player
 import com.lacolinares.ragemusicph.extensions.customComposable
 import com.lacolinares.ragemusicph.presentation.ui.screens.SplashScreen
 import com.lacolinares.ragemusicph.presentation.ui.screens.main.MainScreen
+import com.lacolinares.ragemusicph.presentation.ui.screens.main.MainScreenViewModel
 
 
 @ExperimentalAnimationApi
 @Composable
-fun NavGraph(exoPlayer: ExoPlayer) {
+fun NavGraph(exoPlayer: ExoPlayer, viewModel: MainScreenViewModel) {
     val navController = rememberAnimatedNavController()
 
     AnimatedNavHost(
@@ -29,7 +30,7 @@ fun NavGraph(exoPlayer: ExoPlayer) {
             val audioTitle: MutableState<String> = remember { mutableStateOf("") }
             val audioArtist: MutableState<String> = remember { mutableStateOf("") }
 
-            LaunchedEffect(Unit) {
+            LaunchedEffect(viewModel.rebindService.value) {
                 exoPlayer.prepare()
                 exoPlayer.play()
                 exoPlayer.addListener(object : Player.Listener {
@@ -53,6 +54,7 @@ fun NavGraph(exoPlayer: ExoPlayer) {
                 isAudioPlaying = isAudioPlaying.value,
                 audioTitle = audioTitle.value,
                 audioArtist = audioArtist.value,
+                viewModel = viewModel,
             )
         }
     }

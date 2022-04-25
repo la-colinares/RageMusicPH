@@ -24,6 +24,12 @@ class PlayerService : Service() {
     lateinit var player: ExoPlayer
     lateinit var notificationManager: PlayerNotificationManager
 
+    fun interface OnStopForeground {
+        fun onStop()
+    }
+
+    var onStopListener : OnStopForeground? = null
+
     inner class ServiceBinder : Binder() {
         val playerService: PlayerService
             get() = this@PlayerService
@@ -79,6 +85,7 @@ class PlayerService : Service() {
     private val notificationListener = object: PlayerNotificationManager.NotificationListener{
         override fun onNotificationCancelled(notificationId: Int, dismissedByUser: Boolean) {
             super.onNotificationCancelled(notificationId, dismissedByUser)
+            onStopListener?.onStop()
             stopForeground(true)
             if (player.isPlaying) player.pause()
         }

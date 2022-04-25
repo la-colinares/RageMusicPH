@@ -1,19 +1,17 @@
 package com.lacolinares.ragemusicph.presentation.ui.screens.main
 
-import android.content.ActivityNotFoundException
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.google.android.exoplayer2.ExoPlayer
 import com.lacolinares.ragemusicph.custom.Space
+import com.lacolinares.ragemusicph.extensions.openPlayStoreApp
 import com.lacolinares.ragemusicph.presentation.ui.screens.main.components.BottomContent
 import com.lacolinares.ragemusicph.presentation.ui.screens.main.components.MidContent
 import com.lacolinares.ragemusicph.presentation.ui.screens.main.components.TopContent
@@ -27,8 +25,10 @@ fun MainScreen(
     isAudioPlaying: Boolean,
     audioTitle: String,
     audioArtist: String,
+    viewModel: MainScreenViewModel
 ) {
     val context = LocalContext.current
+    val foregroundServiceStopped = viewModel.foregroundServiceStopped.collectAsState()
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -50,7 +50,12 @@ fun MainScreen(
                 BottomContent(
                     isPlay = isAudioPlaying,
                     onPlay = {
-                        exoPlayer.play()
+                        if (foregroundServiceStopped.value){
+                            viewModel.setRebindService(true)
+                            viewModel.setForegroundServiceStopped(false)
+                        }else{
+                            exoPlayer.play()
+                        }
                     },
                     onPause = {
                         exoPlayer.pause()
@@ -59,22 +64,6 @@ fun MainScreen(
             } else {
                 Loader()
             }
-        }
-    }
-}
-
-fun Context.openPlayStoreApp() {
-    val pkgName = this.packageName
-    if (!pkgName.isNullOrEmpty()) {
-        try {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$pkgName")))
-        } catch (e: ActivityNotFoundException) {
-            startActivity(
-                Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://play.google.com/store/apps/details?id=$pkgName")
-                )
-            )
         }
     }
 }
