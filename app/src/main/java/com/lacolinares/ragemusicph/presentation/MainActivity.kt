@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -17,7 +18,9 @@ import com.lacolinares.ragemusicph.presentation.ui.screens.main.MainScreenViewMo
 import com.lacolinares.ragemusicph.presentation.ui.theme.RageMusicPHTheme
 import com.lacolinares.ragemusicph.service.PlayerService
 import com.lacolinares.ragemusicph.service.PlayerService.ServiceBinder
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 
 @ExperimentalAnimationApi
@@ -27,6 +30,8 @@ class MainActivity : ComponentActivity() {
     private var isBound = false
 
     private val viewModel : MainScreenViewModel by viewModels()
+
+    private var isBackPressOnce = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,5 +85,18 @@ class MainActivity : ComponentActivity() {
         }
 
         override fun onServiceDisconnected(p0: ComponentName?) {}
+    }
+
+    override fun onBackPressed() {
+        if (isBackPressOnce){
+            super.onBackPressed()
+            return
+        }
+        Toast.makeText(this, "Press again to exit.", Toast.LENGTH_SHORT).show()
+        isBackPressOnce = true
+        lifecycleScope.launch {
+            delay(2000L)
+            isBackPressOnce = false
+        }
     }
 }

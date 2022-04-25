@@ -6,16 +6,27 @@
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
-            <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="D:\.development\.android\avd\_Personal_Pixel_4_XL_API_29.ini" />
+            <type value="SERIAL_NUMBER" />
+            <value value="adb-073182519M000177-Y743yV._adb-tls-connect._tcp" />
           </Key>
         </deviceKey>
       </Target>
     </runningDeviceTargetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2022-04-25T10:37:06.142004200Z" />
+    <timeTargetWasSelectedWithDropDown value="2022-04-25T13:02:57.298726900Z" />
     <runningDeviceTargetsSelectedWithDialog>
       <Target>
         <type value="RUNNING_DEVICE_TARGET" />
+        <deviceKey>
+          <Key>
+            <type value="SERIAL_NUMBER" />
+            <value value="adb-073182519M000177-Y743yV._adb-tls-connect._tcp" />
+          </Key>
+        </deviceKey>
+      </Target>
+    </runningDeviceTargetsSelectedWithDialog>
+    <targetsSelectedWithDialog>
+      <Target>
+        <type value="QUICK_BOOT_TARGET" />
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
@@ -23,6 +34,6 @@
           </Key>
         </deviceKey>
       </Target>
-    </runningDeviceTargetsSelectedWithDialog>
+    </targetsSelectedWithDialog>
   </component>
 </project>
