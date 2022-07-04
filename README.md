@@ -1,12 +1,17 @@
-# Rage Music PH
 
-The official App to play Rage Music PH on your phone, playing 100% Pinoy Rap Hitz.
+# Rage Media Station Group
+
+The official App to play Rage Musics on your phone, playing 100% Pinoy Rap Hits, Vibe Music, Emotions, and Hiphop & RNB Music.
 
 
 ## Features
-
+(1.0.0)
 - Listen to Pinoy Rap Hitz
 - Audio Player in Notification with Play/Pause and Stop Control
+
+(1.1.0)
+- Added New Categories such as Vibe, Emotions, and Hot Hiphop & RNB
+- Bottom Navigation
 
 
 ## Tools & Technologies
