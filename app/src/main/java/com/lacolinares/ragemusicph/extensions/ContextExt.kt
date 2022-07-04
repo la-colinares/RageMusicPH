@@ -1,9 +1,25 @@
 package com.lacolinares.ragemusicph.extensions
 
-import android.content.ActivityNotFoundException
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import android.net.Uri
+import android.os.IBinder
+import androidx.activity.ComponentActivity
+import com.google.android.exoplayer2.ExoPlayer
+import com.lacolinares.ragemusicph.service.PlayerService
+
+inline fun <reified Activity : ComponentActivity> Context.getActivity(): Activity? {
+    return when (this) {
+        is Activity -> this
+        else -> {
+            var context = this
+            while (context is ContextWrapper) {
+                context = context.baseContext
+                if (context is Activity) return context
+            }
+            null
+        }
+    }
+}
 
 fun Context.openPlayStoreApp() {
     val pkgName = this.packageName
@@ -18,5 +34,26 @@ fun Context.openPlayStoreApp() {
                 )
             )
         }
+    }
+}
+
+fun Context.runMusicService(onStarted: (ExoPlayer) -> Unit, onStop: (ServiceConnection) -> Unit) {
+    var playerService: PlayerService? = null
+    val playServiceConnection = object : ServiceConnection {
+        override fun onServiceConnected(p0: ComponentName?, p1: IBinder?) {
+            val binder = p1 as PlayerService.ServiceBinder
+            playerService = binder.playerService
+            val exoPlayer = binder.playerService.player
+            onStarted.invoke(exoPlayer)
+        }
+        override fun onServiceDisconnected(p0: ComponentName?) {}
+    }
+
+    playerService?.onStopListener = PlayerService.OnStopForeground {
+        onStop.invoke(playServiceConnection)
+    }
+
+    Intent(this, PlayerService::class.java).also {
+        bindService(it, playServiceConnection, Context.BIND_AUTO_CREATE)
     }
 }

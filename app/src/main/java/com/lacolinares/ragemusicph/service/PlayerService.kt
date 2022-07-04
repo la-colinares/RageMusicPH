@@ -15,7 +15,12 @@ import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaMetadata
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.audio.AudioAttributes
+import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
 import com.google.android.exoplayer2.ui.PlayerNotificationManager
+import com.google.android.exoplayer2.upstream.DataSource
+import com.google.android.exoplayer2.upstream.DefaultDataSource
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
+import com.google.android.exoplayer2.util.Util
 import com.lacolinares.ragemusicph.R
 import kotlinx.coroutines.flow.MutableStateFlow
 
@@ -43,7 +48,15 @@ class PlayerService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        player = ExoPlayer.Builder(applicationContext).build()
+        val httpDataSourceFactory = DefaultHttpDataSource.Factory()
+            .setUserAgent(Util.getUserAgent(applicationContext, "RageMusicStream"))
+            .setAllowCrossProtocolRedirects(true)
+        val dataSource : DataSource.Factory = DefaultDataSource.Factory(applicationContext, httpDataSourceFactory)
+        val mediaSourceFactory = DefaultMediaSourceFactory(dataSource)
+
+        player = ExoPlayer.Builder(applicationContext)
+            .setMediaSourceFactory(mediaSourceFactory)
+            .build()
 
         val audioAttributes = AudioAttributes.Builder()
             .setUsage(C.USAGE_MEDIA)

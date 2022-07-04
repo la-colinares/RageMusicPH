@@ -1,4 +1,4 @@
-package com.lacolinares.ragemusicph.presentation.ui.screens.main.components
+package com.lacolinares.ragemusicph.presentation.ui.screens.musicplayer.components
 
 import android.content.Context
 import android.media.AudioManager

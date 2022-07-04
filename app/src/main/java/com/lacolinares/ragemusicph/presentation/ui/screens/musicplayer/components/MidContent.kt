@@ -1,4 +1,4 @@
-package com.lacolinares.ragemusicph.presentation.ui.screens.main.components
+package com.lacolinares.ragemusicph.presentation.ui.screens.musicplayer.components
 
 import android.graphics.Color
 import androidx.compose.foundation.Image
@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -61,13 +62,15 @@ private fun MusicInfo(title: String = "N/A", artist: String = "N/A") {
             text = title,
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
-            color = White
+            textAlign = TextAlign.Center,
+            color = White,
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
             text = artist,
             fontSize = 16.sp,
             fontWeight = FontWeight.Light,
+            textAlign = TextAlign.Center,
             color = White
         )
     }
