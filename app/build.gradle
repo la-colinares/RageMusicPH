@@ -4,7 +4,7 @@ plugins {
 }
 
 ext.versionMajor = 1 //Change when making major feature/functions
-ext.versionMinor = 2 //Change when making UI updates
+ext.versionMinor = 3 //Change when making UI updates
 ext.versionPatch = 0 //Change when making bug fixes
 
 android {
