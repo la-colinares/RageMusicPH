@@ -41,7 +41,7 @@ fun HomeScreen(navController: NavController, viewModel: MainViewModel) {
             textAlignment = TextAlign.Center,
             textSize = 24.sp
         )
-        Space(48)
+        Space(40)
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
@@ -72,7 +72,7 @@ private fun MusicCard(title: String, description: String, onClick: () -> Unit){
         Column(
             modifier = Modifier
                 .background(gradient)
-                .padding(24.dp)
+                .padding(20.dp)
         ) {
             Header(title = title, textSize = 24.sp)
             Space()

@@ -6,6 +6,7 @@ import com.lacolinares.ragemusicph.presentation.ui.screens.home.model.MusicCateg
 import com.lacolinares.ragemusicph.utils.Constants.URL_EMOTIONS
 import com.lacolinares.ragemusicph.utils.Constants.URL_HIPHOP_RNB
 import com.lacolinares.ragemusicph.utils.Constants.URL_RAP_HITS
+import com.lacolinares.ragemusicph.utils.Constants.URL_SCREAM
 import com.lacolinares.ragemusicph.utils.Constants.URL_VIBE_RADIO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -60,6 +61,12 @@ class MainViewModel : ViewModel() {
                 description = "Fresh Urban Hits",
                 logo = R.drawable.ic_hiphop_rnb,
                 url = URL_HIPHOP_RNB,
+            ),
+            MusicCategory(
+                title = "Scream Radio",
+                description = "Best Rock Songs",
+                logo = R.drawable.ic_scream,
+                url = URL_SCREAM,
             ),
         )
     }
