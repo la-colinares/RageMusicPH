@@ -2,11 +2,12 @@ package com.lacolinares.ragemusicph.utils
 
 object Constants {
 
-    const val URL_RAP_HITS = "https://node-15.zeno.fm/yu9dryfs7x8uv.mp3?rj-ttl=5&rj-tok=AAABgFn8jHMAJlhQjlgTTNm8Iw"
-    const val URL_VIBE_RADIO = "https://node-06.zeno.fm/zf0ac4raqy8uv?zs=dXYFwm8RTp2eQOapmiZl7Q&rj-tok=AAABgcR_9SQAxqtwNGvZIYwyjg&rj-ttl=5"
-    const val URL_EMOTIONS = "https://node-06.zeno.fm/03v7z8edgphvv?zs=I0oyQDm0SLqqrDIiEmivig&rj-ttl=5&rj-tok=AAABgcQYtKMAJPMPxhkinkyLNg"
-    const val URL_HIPHOP_RNB = "https://node-13.zeno.fm/snqnkbnm208uv.mp3?&rj-tok=AAABgcbAB7IAIMX3HqagiJ-2Og&rj-ttl=5"
-    const val URL_SCREAM = "https://node-13.zeno.fm/us9zu5w8zxhvv.mp3?rj-tok=AAABgk9NDEYAgr4-Sy_S6tVvkw&rj-ttl=5"
+    const val URL_RAP_HITS = "https://stream-56.zeno.fm/q1n2wyfs7x8uv?zs=6SJEpe5RR2KmDcMY9WC32g"
+    const val URL_VIBE_RADIO = "https://stream-54.zeno.fm/4k8qf4raqy8uv?zs=uFcHoLCkRPa-lmm6SIDNxg"
+    const val URL_EMOTIONS = "https://stream-43.zeno.fm/03v7z8edgphvv?zs=3Gp2Pb4lQvqmK-gMA2cQeg"
+    const val URL_HIPHOP_RNB = "https://stream-46.zeno.fm/snqnkbnm208uv?zs=sJAydqWhRwCp92FvaV9Wrw"
+    const val URL_SCREAM = "https://stream-57.zeno.fm/us9zu5w8zxhvv?zs=nVu-UqqpReGSddeSlVV9zw"
+    const val URL_CLUB_MIX = "https://stream-41.zeno.fm/d42hdvx96zhvv?zs=7UIfJMjXQNug5toGw7Arxw"
 
     const val RAGE_PAGE_NAME = "@ragemusicph"
     const val RAGE_PAGE_WEBSITE = "https://www.facebook.com/ragemusicph"

@@ -3,6 +3,7 @@ package com.lacolinares.ragemusicph.presentation
 import androidx.lifecycle.ViewModel
 import com.lacolinares.ragemusicph.R
 import com.lacolinares.ragemusicph.presentation.ui.screens.home.model.MusicCategory
+import com.lacolinares.ragemusicph.utils.Constants.URL_CLUB_MIX
 import com.lacolinares.ragemusicph.utils.Constants.URL_EMOTIONS
 import com.lacolinares.ragemusicph.utils.Constants.URL_HIPHOP_RNB
 import com.lacolinares.ragemusicph.utils.Constants.URL_RAP_HITS
@@ -67,6 +68,12 @@ class MainViewModel : ViewModel() {
                 description = "Best Rock Songs",
                 logo = R.drawable.ic_scream,
                 url = URL_SCREAM,
+            ),
+            MusicCategory(
+                title = "Club Mix",
+                description = "Best EDM and Party Hits",
+                logo = R.drawable.ic_club_mix,
+                url = URL_CLUB_MIX,
             ),
         )
     }

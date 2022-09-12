@@ -72,11 +72,11 @@ private fun MusicCard(title: String, description: String, onClick: () -> Unit){
         Column(
             modifier = Modifier
                 .background(gradient)
-                .padding(20.dp)
+                .padding(16.dp)
         ) {
-            Header(title = title, textSize = 24.sp)
+            Header(title = title, textSize = 18.sp)
             Space()
-            Header(title = description, textSize = 14.sp)
+            Header(title = description, textSize = 12.sp)
         }
     }
 }

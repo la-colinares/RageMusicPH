@@ -112,8 +112,8 @@ class PlayerService : Service() {
     }
 
     private fun descriptionAdapter():  PlayerNotificationManager.MediaDescriptionAdapter {
-        val title = MutableStateFlow("Rage Music PH")
-        val artist = MutableStateFlow("Pinoy Rap Hits")
+        val title = MutableStateFlow("Rage Media Group Station")
+        val artist = MutableStateFlow("Online Radio")
         player.addListener(object : Player.Listener {
             override fun onMediaMetadataChanged(mediaMetadata: MediaMetadata) {
                 super.onMediaMetadataChanged(mediaMetadata)

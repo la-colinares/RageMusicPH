@@ -58,6 +58,9 @@ fun NavGraph(viewModel: MainViewModel) {
                                         val data = mediaMetadata.title.toString().split("-")
                                         audioTitle.value = data.last().trim()
                                         audioArtist.value = data.first().trim()
+                                    }else{
+                                        audioTitle.value = selectedCategory.title
+                                        audioArtist.value = selectedCategory.description
                                     }
                                 }
 
