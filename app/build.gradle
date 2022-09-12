@@ -3,8 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
-ext.versionMajor = 1 //Change when making major feature/functions
-ext.versionMinor = 3 //Change when making UI updates
+ext.versionMajor = 2 //Change when making major feature/functions
+ext.versionMinor = 0 //Change when making UI updates
 ext.versionPatch = 0 //Change when making bug fixes
 
 android {
