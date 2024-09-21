@@ -8,6 +8,7 @@ ext.versionMinor = 0 //Change when making UI updates
 ext.versionPatch = 0 //Change when making bug fixes
 
 android {
+    namespace 'com.lacolinares.ragemusicph'
     compileSdk 31
 
     defaultConfig {
