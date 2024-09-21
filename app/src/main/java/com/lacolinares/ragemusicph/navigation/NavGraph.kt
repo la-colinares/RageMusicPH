@@ -22,7 +22,6 @@ import com.lacolinares.ragemusicph.presentation.MainViewModel
 import com.lacolinares.ragemusicph.presentation.ui.screens.main.MainScreen
 import com.lacolinares.ragemusicph.presentation.ui.screens.musicplayer.ActiveMusic
 import com.lacolinares.ragemusicph.presentation.ui.screens.musicplayer.MusicPlayerScreen
-import com.lacolinares.ragemusicph.presentation.ui.screens.splash.SplashScreen
 
 @ExperimentalAnimationApi
 @Composable
@@ -30,11 +29,8 @@ fun NavGraph(viewModel: MainViewModel) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = Screen.SplashScreen.route
+        startDestination = Screen.MainScreen.route
     ) {
-        customComposable(Screen.SplashScreen.route) {
-            SplashScreen(navController = navController)
-        }
         customComposable(Screen.MainScreen.route) {
             MainScreen(mainNavController = navController, viewModel = viewModel)
         }

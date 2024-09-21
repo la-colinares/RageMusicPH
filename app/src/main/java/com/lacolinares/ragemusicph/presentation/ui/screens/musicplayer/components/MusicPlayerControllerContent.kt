@@ -28,7 +28,7 @@ import com.lacolinares.ragemusicph.custom.Space
 import com.lacolinares.ragemusicph.presentation.ui.theme.Red
 
 @Composable
-fun BottomContent(
+fun MusicPlayerControllerContent(
     isPlay: Boolean,
     onPlay: () -> Unit = {},
     onPause: () -> Unit = {},

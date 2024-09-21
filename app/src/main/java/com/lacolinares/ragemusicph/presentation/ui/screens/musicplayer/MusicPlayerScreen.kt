@@ -1,7 +1,11 @@
 package com.lacolinares.ragemusicph.presentation.ui.screens.musicplayer
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -13,9 +17,9 @@ import androidx.media3.exoplayer.ExoPlayer
 import com.lacolinares.ragemusicph.custom.Space
 import com.lacolinares.ragemusicph.extensions.openPlayStoreApp
 import com.lacolinares.ragemusicph.presentation.MainViewModel
-import com.lacolinares.ragemusicph.presentation.ui.screens.musicplayer.components.BottomContent
-import com.lacolinares.ragemusicph.presentation.ui.screens.musicplayer.components.MidContent
-import com.lacolinares.ragemusicph.presentation.ui.screens.musicplayer.components.TopContent
+import com.lacolinares.ragemusicph.presentation.ui.screens.musicplayer.components.MusicPlayerAudioContent
+import com.lacolinares.ragemusicph.presentation.ui.screens.musicplayer.components.MusicPlayerControllerContent
+import com.lacolinares.ragemusicph.presentation.ui.screens.musicplayer.components.MusicPlayerHeaderContent
 import com.lacolinares.ragemusicph.presentation.ui.theme.Background
 import com.lacolinares.ragemusicph.presentation.ui.theme.Red
 
@@ -30,17 +34,15 @@ fun MusicPlayerScreen(
     viewModel: MainViewModel,
 ) {
     val context = LocalContext.current
-    val foregroundServiceStopped = viewModel.foregroundServiceStopped.collectAsState()
+    val isForegroundServiceStopped = viewModel.foregroundServiceStopped.collectAsState()
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(Background)
     ) {
-        Column(modifier = Modifier
-            .padding(horizontal = 24.dp, vertical = 48.dp)
-        ) {
-            TopContent(headerTitle = headerTitle, description, logo)
-            MidContent(
+        Column(modifier = Modifier.padding(horizontal = 24.dp, vertical = 48.dp)) {
+            MusicPlayerHeaderContent(headerTitle = headerTitle, description, logo)
+            MusicPlayerAudioContent(
                 playEqualizer = activeMusic.isPlaying,
                 musicTitle = activeMusic.title,
                 musicArtist = activeMusic.artist,
@@ -49,10 +51,10 @@ fun MusicPlayerScreen(
                 }
             )
             if (activeMusic.title.isNotEmpty()) {
-                BottomContent(
+                MusicPlayerControllerContent(
                     isPlay = activeMusic.isPlaying,
                     onPlay = {
-                        if (foregroundServiceStopped.value) {
+                        if (isForegroundServiceStopped.value) {
                             viewModel.setForegroundServiceStopped(false)
                         } else {
                             exoPlayer.play()

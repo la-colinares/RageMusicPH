@@ -20,7 +20,7 @@ import com.lacolinares.ragemusicph.presentation.ui.theme.SubTitleColor
 import com.lacolinares.ragemusicph.presentation.ui.theme.orbitronFamily
 
 @Composable
-fun TopContent(headerTitle: String, description: String, logo: Int = R.drawable.ic_rage_music_ph) {
+internal fun MusicPlayerHeaderContent(headerTitle: String, description: String, logo: Int = R.drawable.ic_rage_music_ph) {
     Header(title = headerTitle, textAlignment = TextAlign.Center, textSize = 24.sp)
     Space(4)
     Header(title = description, textAlignment = TextAlign.Center, textSize = 14.sp, textColor = SubTitleColor)
