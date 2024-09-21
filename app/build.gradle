@@ -9,12 +9,12 @@ ext.versionPatch = 0 //Change when making bug fixes
 
 android {
     namespace 'com.lacolinares.ragemusicph'
-    compileSdk 31
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.lacolinares.ragemusicph"
         minSdk 22
-        targetSdk 31
+        targetSdk 34
         versionCode generateVersionCode()
         versionName generateVersionName()
 
