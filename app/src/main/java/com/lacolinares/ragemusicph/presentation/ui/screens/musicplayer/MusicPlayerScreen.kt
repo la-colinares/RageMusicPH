@@ -9,7 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.google.android.exoplayer2.ExoPlayer
+import androidx.media3.exoplayer.ExoPlayer
 import com.lacolinares.ragemusicph.custom.Space
 import com.lacolinares.ragemusicph.extensions.openPlayStoreApp
 import com.lacolinares.ragemusicph.presentation.MainViewModel

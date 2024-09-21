@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
@@ -59,7 +60,8 @@ fun PlayPauseButton(
                     onPlay.invoke()
                 }
             },
-            contentColor = Red,
+            shape = CircleShape,
+            containerColor = Red,
         ) {
             val icon = if (isPlay) R.drawable.ic_baseline_pause_24 else R.drawable.ic_baseline_play_arrow_24
             Image(

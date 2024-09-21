@@ -4,19 +4,19 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.TextLinkStyles
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withLink
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -44,7 +44,9 @@ fun AboutScreen() {
             fontWeight = FontWeight.Medium,
             fontSize = 24.sp,
             textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp)
         )
         Space(48)
         Text(
@@ -58,17 +60,15 @@ fun AboutScreen() {
         )
         Space(48)
         AnnotatedString(
-            text = "Facebook Page: ${Constants.RAGE_PAGE_NAME}",
+            text = "Facebook Page: ",
             link = Constants.RAGE_PAGE_WEBSITE,
             segment = Constants.RAGE_PAGE_NAME,
-            tag = RAGE_MUSIC_PAGE_TAG
         )
         Space(12)
         AnnotatedString(
-            text = "Developer: ${Constants.DEVELOPER_NAME}",
+            text = "Developer: ",
             link = Constants.DEVELOPER_WEBSITE,
             segment = Constants.DEVELOPER_NAME,
-            tag = DEV_TAG
         )
     }
 }
@@ -78,41 +78,25 @@ private fun AnnotatedString(
     text: String,
     link: String,
     segment: String,
-    tag: String,
 ) {
-    val uriHandler = LocalUriHandler.current
-    val annotatedText = attachLink(text, link, segment, tag)
-    ClickableText(
-        text = annotatedText,
-        style = TextStyle(Color.White, fontSize = 16.sp),
-        onClick = {
-            annotatedText
-                .getStringAnnotations(tag, it, it)
-                .firstOrNull()
-                ?.let { url -> uriHandler.openUri(url.item) }
-        }
+    Text(
+        text = buildAnnotatedString {
+            append(text)
+            withLink(
+                link = LinkAnnotation.Url(
+                    url = link,
+                    styles = TextLinkStyles(style = SpanStyle(
+                        color = HyperLinkColor,
+                        textDecoration = TextDecoration.Underline
+                        )
+                    )
+                )
+            ) {
+                append(segment)
+            }
+        },
+        color = Color.White
     )
-}
-
-private fun attachLink(
-    source: String,
-    link: String,
-    segment: String,
-    tag: String,
-): AnnotatedString {
-    val builder = AnnotatedString.Builder()
-    builder.append(source)
-
-    val start = source.indexOf(segment)
-    val end = start + segment.length
-    val styledHyperLink = SpanStyle(
-        color = HyperLinkColor,
-        textDecoration = TextDecoration.Underline
-    )
-
-    builder.addStyle(styledHyperLink, start, end)
-    builder.addStringAnnotation(tag, link, start, end)
-    return builder.toAnnotatedString()
 }
 
 @Preview(showSystemUi = true, showBackground = true, backgroundColor = 0xFF151513)

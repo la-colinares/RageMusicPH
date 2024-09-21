@@ -4,7 +4,9 @@ import android.content.*
 import android.net.Uri
 import android.os.IBinder
 import androidx.activity.ComponentActivity
-import com.google.android.exoplayer2.ExoPlayer
+import androidx.annotation.OptIn
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.exoplayer.ExoPlayer
 import com.lacolinares.ragemusicph.service.PlayerService
 
 inline fun <reified Activity : ComponentActivity> Context.getActivity(): Activity? {
@@ -37,6 +39,7 @@ fun Context.openPlayStoreApp() {
     }
 }
 
+@OptIn(UnstableApi::class)
 fun Context.runMusicService(onStarted: (ExoPlayer) -> Unit, onStop: (ServiceConnection) -> Unit) {
     var playerService: PlayerService? = null
     val playServiceConnection = object : ServiceConnection {

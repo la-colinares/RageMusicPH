@@ -8,12 +8,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.google.accompanist.navigation.animation.AnimatedNavHost
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.MediaMetadata
-import com.google.android.exoplayer2.Player
+import androidx.media3.common.MediaItem
+import androidx.media3.common.MediaMetadata
+import androidx.media3.common.Player
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
 import com.lacolinares.ragemusicph.extensions.customComposable
 import com.lacolinares.ragemusicph.extensions.getActivity
 import com.lacolinares.ragemusicph.extensions.runMusicService
@@ -27,8 +27,8 @@ import com.lacolinares.ragemusicph.presentation.ui.screens.splash.SplashScreen
 @ExperimentalAnimationApi
 @Composable
 fun NavGraph(viewModel: MainViewModel) {
-    val navController = rememberAnimatedNavController()
-    AnimatedNavHost(
+    val navController = rememberNavController()
+    NavHost(
         navController = navController,
         startDestination = Screen.SplashScreen.route
     ) {

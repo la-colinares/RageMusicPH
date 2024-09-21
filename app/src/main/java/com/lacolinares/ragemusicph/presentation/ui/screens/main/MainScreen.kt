@@ -20,9 +20,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.google.accompanist.navigation.animation.AnimatedNavHost
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import androidx.navigation.compose.rememberNavController
 import com.lacolinares.ragemusicph.extensions.customComposable
 import com.lacolinares.ragemusicph.navigation.BottomScreen
 import com.lacolinares.ragemusicph.navigation.Screen
@@ -36,7 +36,7 @@ import com.lacolinares.ragemusicph.presentation.ui.theme.BottomNavBackground
 @ExperimentalAnimationApi
 @Composable
 fun MainScreen(mainNavController: NavController, viewModel: MainViewModel){
-    val bottomNavController = rememberAnimatedNavController()
+    val bottomNavController = rememberNavController()
     Scaffold(
         bottomBar = {
             AppBottomNav(
@@ -64,7 +64,7 @@ fun MainScreen(mainNavController: NavController, viewModel: MainViewModel){
 @ExperimentalAnimationApi
 @Composable
 private fun BottomNavHost(mainNavController: NavController, bottomNavController: NavHostController, viewModel: MainViewModel){
-    AnimatedNavHost(navController = bottomNavController, startDestination = BottomScreen.Home.route){
+    NavHost(navController = bottomNavController, startDestination = BottomScreen.Home.route){
         customComposable(BottomScreen.Home.route){
             HomeScreen(navController = mainNavController, viewModel = viewModel)
         }
