@@ -5,6 +5,13 @@ The official App to play Rage Musics on your phone, playing 100% Pinoy Rap Hits,
 
 
 ## Features and Updates
+(2.1.0)
+- Update compile and target SDK to 34
+- Update Kotlin, AGP, Gradle Versions and Plugins versions
+- Migrate ExoPlayer to Jetpack Media3
+- Implement SplashScreen API
+- Implement AndroidX Compose navigation library 2.8.1
+
 (2.0.0)
 - Added Club Mix Category
 - Update App Name
@@ -30,11 +37,11 @@ The official App to play Rage Musics on your phone, playing 100% Pinoy Rap Hits,
 
 **Language:** Kotlin
 
-**IDE:** Android Studio Bumblebee 2021.1.1 Patch 2
+**IDE:** Android Studio Koala Feature Drop | 2024.1.2 Patch 1
 
 **UI Toolkit:** Jetpack Compose
 
-**Media Player API:** ExoPlayer 2.17.1
+**Media Library:** Jetpack Media3
 
 ## Author
 
