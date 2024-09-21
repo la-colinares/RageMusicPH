@@ -2,7 +2,7 @@ package com.lacolinares.ragemusicph.presentation.ui.screens.musicplayer
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment

@@ -1,8 +1,13 @@
 package com.lacolinares.ragemusicph.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.android.exoplayer2.ExoPlayer
@@ -34,7 +39,7 @@ fun NavGraph(viewModel: MainViewModel) {
             MainScreen(mainNavController = navController, viewModel = viewModel)
         }
         customComposable(Screen.MusicPlayerScreen.route) {
-            val selectedCategory = viewModel.selectedMusicCategory.value
+            val selectedCategory = viewModel.selectedMusicCategory.collectAsStateWithLifecycle().value
             val isAudioPlaying: MutableState<Boolean> = remember { mutableStateOf(false) }
             val audioTitle: MutableState<String> = remember { mutableStateOf("") }
             val audioArtist: MutableState<String> = remember { mutableStateOf("") }

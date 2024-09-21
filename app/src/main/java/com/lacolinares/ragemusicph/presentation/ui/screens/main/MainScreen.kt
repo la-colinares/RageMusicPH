@@ -7,7 +7,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -80,14 +84,15 @@ private fun AppBottomNav(mainNavController: NavController, navController: NavCon
     if (mainScreenRoute == Screen.MainScreen.route && currentNavRoute == BottomScreen.Home.route){
         viewModel.setIsHome(true)
     }
-    BottomNavigation(
-        backgroundColor = BottomNavBackground,
+
+    NavigationBar(
+        containerColor = BottomNavBackground,
         contentColor = Color.White,
-        elevation = 14.dp,
+        tonalElevation = 14.dp,
         modifier = Modifier.clip(shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)).height(64.dp)
     ) {
         bottomNavItems.forEach { nav ->
-            BottomNavigationItem(
+            NavigationBarItem(
                 icon = { Icon(nav.icon, contentDescription = null) },
                 label = { Text(text = nav.title) },
                 selected = currentNavRoute == nav.route,

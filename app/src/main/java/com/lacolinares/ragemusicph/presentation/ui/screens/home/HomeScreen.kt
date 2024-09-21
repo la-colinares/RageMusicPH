@@ -2,12 +2,18 @@ package com.lacolinares.ragemusicph.presentation.ui.screens.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Text
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -63,7 +69,7 @@ fun HomeScreen(navController: NavController, viewModel: MainViewModel) {
 private fun MusicCard(title: String, description: String, onClick: () -> Unit){
     val gradient = Brush.horizontalGradient(0f to Red, 1000f to Background)
     Card(
-        elevation = 4.dp,
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         shape = RoundedCornerShape(8.dp),
         modifier = Modifier.clickable { 
             onClick.invoke()

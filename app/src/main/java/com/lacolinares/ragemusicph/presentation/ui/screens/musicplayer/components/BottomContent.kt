@@ -3,11 +3,19 @@ package com.lacolinares.ragemusicph.presentation.ui.screens.musicplayer.componen
 import android.content.Context
 import android.media.AudioManager
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Slider
-import androidx.compose.material.SliderDefaults
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -51,7 +59,7 @@ fun PlayPauseButton(
                     onPlay.invoke()
                 }
             },
-            backgroundColor = Red,
+            contentColor = Red,
         ) {
             val icon = if (isPlay) R.drawable.ic_baseline_pause_24 else R.drawable.ic_baseline_play_arrow_24
             Image(
