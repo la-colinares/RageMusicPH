@@ -39,42 +39,12 @@ class MainViewModel : ViewModel() {
 
     private fun generateMusicCategories(): List<MusicCategory> {
         return listOf(
-            MusicCategory(
-                title = "Rage Music PH",
-                description = "100% Pinoy Rap Music",
-                logo = R.drawable.ic_rage_music_ph,
-                url = URL_RAP_HITS,
-            ),
-            MusicCategory(
-                title = "Vibe Radio",
-                description = "Today’s Best Music",
-                logo = R.drawable.ic_vibe,
-                url = URL_VIBE_RADIO,
-            ),
-            MusicCategory(
-                title = "Emotions",
-                description = "24/7 Lovesongs",
-                logo = R.drawable.ic_emotions,
-                url = URL_EMOTIONS,
-            ),
-            MusicCategory(
-                title = "Hot Hiphop & RNB",
-                description = "Fresh Urban Hits",
-                logo = R.drawable.ic_hiphop_rnb,
-                url = URL_HIPHOP_RNB,
-            ),
-            MusicCategory(
-                title = "Scream Radio",
-                description = "Best Rock Songs",
-                logo = R.drawable.ic_scream,
-                url = URL_SCREAM,
-            ),
-            MusicCategory(
-                title = "Club Mix",
-                description = "Best EDM and Party Hits",
-                logo = R.drawable.ic_club_mix,
-                url = URL_CLUB_MIX,
-            ),
+            MusicCategory(title = "Rage Music PH", description = "100% Pinoy Rap Music", logo = R.drawable.ic_rage_music_ph, url = URL_RAP_HITS),
+            MusicCategory(title = "Vibe Radio", description = "Today’s Best Music", logo = R.drawable.ic_vibe, url = URL_VIBE_RADIO),
+            MusicCategory(title = "Emotions", description = "24/7 Lovesongs", logo = R.drawable.ic_emotions, url = URL_EMOTIONS),
+            MusicCategory(title = "Hot Hiphop & RNB", description = "Fresh Urban Hits", logo = R.drawable.ic_hiphop_rnb, url = URL_HIPHOP_RNB),
+            MusicCategory(title = "Scream Radio", description = "Best Rock Songs", logo = R.drawable.ic_scream, url = URL_SCREAM),
+            MusicCategory(title = "Club Mix", description = "Best EDM and Party Hits", logo = R.drawable.ic_club_mix, url = URL_CLUB_MIX),
         )
     }
 }

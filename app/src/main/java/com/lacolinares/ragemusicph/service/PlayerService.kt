@@ -29,7 +29,7 @@ class PlayerService : Service() {
     private val serviceBinder = ServiceBinder()
 
     lateinit var player: ExoPlayer
-    lateinit var notificationManager: PlayerNotificationManager
+    private lateinit var notificationManager: PlayerNotificationManager
 
     fun interface OnStopForeground {
         fun onStop()
